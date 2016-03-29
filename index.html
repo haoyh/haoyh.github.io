@@ -9,7 +9,7 @@
   <meta name="description" content="haoyh">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Haoyh的博客">
-<meta property="og:url" content="http://www.haoyh.com/blog/index.html">
+<meta property="og:url" content="http://haoyh.github.io/blog/index.html">
 <meta property="og:site_name" content="Haoyh的博客">
 <meta property="og:description" content="haoyh">
 <meta name="twitter:card" content="summary">
@@ -79,7 +79,7 @@
 						<li>Links</li>
 						
 						
-						<li>About</li>
+						<li>Über</li>
 						
 					</ul>
 				</div>
@@ -299,7 +299,7 @@
 <h3 id="4-遇到的坑"><a href="#4-遇到的坑" class="headerlink" title="4.遇到的坑"></a>4.遇到的坑</h3><p> 安装好了之后，怎么都提交不到git，我的解决办法是缺少安装，继续安装，<br>   <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install hexo-deployer-git —-save   // 我的一直不成功，然后安装了下这个就正常了</span><br></pre></td></tr></table></figure></p>
 <h3 id="5-关联github"><a href="#5-关联github" class="headerlink" title="5.关联github"></a>5.关联github</h3><p> a.建立Repository 建立与你用户名对应的仓库，仓库名必须为【your_user_name.github.io】，固定写法<br> b.建立关联，以刚才创建的blog为例，cd到blog目录，包含的文件和目录如下图所示<br>  <img src="attach-0.png" alt=""><br> c.通过修改_config.yml文件，来建立关联，命令：<br> <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ vim _config.yml</span><br></pre></td></tr></table></figure></p>
 <p> 到文件尾部，修改为下图所示的样子，repository修改为刚才创建的git repository名。<br> <img src="attach-0.png" alt=""><br> d.最后执行命令<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure></p>
-<p> 在浏览器中输入<a href="http://haoyh.github.io" target="_blank" rel="external">http://haoyh.github.io</a>就可以了，注需要将名字改为你的。</p>
+<p> 在浏览器中输入<a href="http://haoyh.github.io">http://haoyh.github.io</a>就可以了，注需要将名字改为你的。</p>
 <h3 id="部署步骤"><a href="#部署步骤" class="headerlink" title="部署步骤"></a>部署步骤</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ hexo clean</span><br><span class="line">$ hexo generate</span><br><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
 <h2 id="看到这里，还不快去试试。"><a href="#看到这里，还不快去试试。" class="headerlink" title="看到这里，还不快去试试。"></a>看到这里，还不快去试试。</h2>
       

@@ -10,18 +10,18 @@
 2.准备工作   准备工作一般从百度开始（无果会转到Google），结果很">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Hexo+GitHub 环境配置">
-<meta property="og:url" content="http://www.haoyh.com/blog/2016/03/04/Hexo＋GitHub环境搭建/index.html">
+<meta property="og:url" content="http://haoyh.github.io/blog/2016/03/04/Hexo＋GitHub环境搭建/index.html">
 <meta property="og:site_name" content="Haoyh的博客">
 <meta property="og:description" content="1.为什么要搭建这个环境   写了2年的代码想把用到的，学习到的东西记录下来，看着csdn又不是很爽，看到那么多炫酷的个人博客，我也要拥有一个这时候已经在心里种下了种子。突然有一个看到大神stormzhang的公众号推荐了一篇文章 我为什么坚持下博客 知道了几个可以用的环境，知道了Hexo并且是大神推荐的所以就准备搭建下。
 2.准备工作   准备工作一般从百度开始（无果会转到Google），结果很">
-<meta property="og:image" content="http://www.haoyh.com/blog/attach-0.png">
-<meta property="og:image" content="http://www.haoyh.com/blog/attach-0.png">
+<meta property="og:image" content="http://haoyh.github.io/blog/attach-0.png">
+<meta property="og:image" content="http://haoyh.github.io/blog/attach-0.png">
 <meta property="og:updated_time" content="2016-03-29T10:00:20.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hexo+GitHub 环境配置">
 <meta name="twitter:description" content="1.为什么要搭建这个环境   写了2年的代码想把用到的，学习到的东西记录下来，看着csdn又不是很爽，看到那么多炫酷的个人博客，我也要拥有一个这时候已经在心里种下了种子。突然有一个看到大神stormzhang的公众号推荐了一篇文章 我为什么坚持下博客 知道了几个可以用的环境，知道了Hexo并且是大神推荐的所以就准备搭建下。
 2.准备工作   准备工作一般从百度开始（无果会转到Google），结果很">
-<meta name="twitter:image" content="http://www.haoyh.com/blog/attach-0.png">
+<meta name="twitter:image" content="http://haoyh.github.io/blog/attach-0.png">
   
     <link rel="alternative" href="/atom.xml" title="Haoyh的博客" type="application/atom+xml">
   
@@ -86,7 +86,7 @@
 						<li>Links</li>
 						
 						
-						<li>About</li>
+						<li>Über</li>
 						
 					</ul>
 				</div>
@@ -250,7 +250,7 @@
 <h3 id="4-遇到的坑"><a href="#4-遇到的坑" class="headerlink" title="4.遇到的坑"></a>4.遇到的坑</h3><p> 安装好了之后，怎么都提交不到git，我的解决办法是缺少安装，继续安装，<br>   <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install hexo-deployer-git —-save   // 我的一直不成功，然后安装了下这个就正常了</span><br></pre></td></tr></table></figure></p>
 <h3 id="5-关联github"><a href="#5-关联github" class="headerlink" title="5.关联github"></a>5.关联github</h3><p> a.建立Repository 建立与你用户名对应的仓库，仓库名必须为【your_user_name.github.io】，固定写法<br> b.建立关联，以刚才创建的blog为例，cd到blog目录，包含的文件和目录如下图所示<br>  <img src="attach-0.png" alt=""><br> c.通过修改_config.yml文件，来建立关联，命令：<br> <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ vim _config.yml</span><br></pre></td></tr></table></figure></p>
 <p> 到文件尾部，修改为下图所示的样子，repository修改为刚才创建的git repository名。<br> <img src="attach-0.png" alt=""><br> d.最后执行命令<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure></p>
-<p> 在浏览器中输入<a href="http://haoyh.github.io" target="_blank" rel="external">http://haoyh.github.io</a>就可以了，注需要将名字改为你的。</p>
+<p> 在浏览器中输入<a href="http://haoyh.github.io">http://haoyh.github.io</a>就可以了，注需要将名字改为你的。</p>
 <h3 id="部署步骤"><a href="#部署步骤" class="headerlink" title="部署步骤"></a>部署步骤</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ hexo clean</span><br><span class="line">$ hexo generate</span><br><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
 <h2 id="看到这里，还不快去试试。"><a href="#看到这里，还不快去试试。" class="headerlink" title="看到这里，还不快去试试。"></a>看到这里，还不快去试试。</h2>
       
@@ -302,7 +302,7 @@
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="Hexo＋GitHub环境搭建" data-title="Hexo+GitHub 环境配置" data-url="http://www.haoyh.com/blog/blog/2016/03/04/Hexo＋GitHub环境搭建/"></div>
+	<div class="ds-thread" data-thread-key="Hexo＋GitHub环境搭建" data-title="Hexo+GitHub 环境配置" data-url="http://haoyh.github.io/blog/blog/2016/03/04/Hexo＋GitHub环境搭建/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
