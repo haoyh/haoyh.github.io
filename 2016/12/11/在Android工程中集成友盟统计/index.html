@@ -1,0 +1,705 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Android" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="在Android工程中集成友盟统计首先需要在友盟官网注册账号并添加新应用，获取Appkey。具体步骤这里不进行叙述。
+1.集成准备首先需要集成友盟统计SDK有两种方式：
+1.下载SDK，并复制到工程 lib/目录下；
+2.通过添加gradle依赖，在app/builde.gradle中添加
+123dependencies &amp;#123;   compile &amp;apos;com.umeng.analy">
+<meta property="og:type" content="article">
+<meta property="og:title" content="在Android工程中集成友盟统计记录">
+<meta property="og:url" content="http://haoyh.github.io/2016/12/11/在Android工程中集成友盟统计/index.html">
+<meta property="og:site_name" content="Haoyh的博客">
+<meta property="og:description" content="在Android工程中集成友盟统计首先需要在友盟官网注册账号并添加新应用，获取Appkey。具体步骤这里不进行叙述。
+1.集成准备首先需要集成友盟统计SDK有两种方式：
+1.下载SDK，并复制到工程 lib/目录下；
+2.通过添加gradle依赖，在app/builde.gradle中添加
+123dependencies &amp;#123;   compile &amp;apos;com.umeng.analy">
+<meta property="og:updated_time" content="2016-12-11T09:44:53.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="在Android工程中集成友盟统计记录">
+<meta name="twitter:description" content="在Android工程中集成友盟统计首先需要在友盟官网注册账号并添加新应用，获取Appkey。具体步骤这里不进行叙述。
+1.集成准备首先需要集成友盟统计SDK有两种方式：
+1.下载SDK，并复制到工程 lib/目录下；
+2.通过添加gradle依赖，在app/builde.gradle中添加
+123dependencies &amp;#123;   compile &amp;apos;com.umeng.analy">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://haoyh.github.io/2016/12/11/在Android工程中集成友盟统计/"/>
+
+
+
+
+
+  <title> 在Android工程中集成友盟统计记录 | Haoyh的博客 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?064a42d894b05dba086daa92b846cff0";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Haoyh的博客</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://haoyh.github.io/2016/12/11/在Android工程中集成友盟统计/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Haoyh">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.png">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Haoyh的博客">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Haoyh的博客" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                在Android工程中集成友盟统计记录
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-12-11T17:44:53+08:00">
+                2016-12-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <a href="/2016/12/11/在Android工程中集成友盟统计/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/11/在Android工程中集成友盟统计/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="在Android工程中集成友盟统计"><a href="#在Android工程中集成友盟统计" class="headerlink" title="在Android工程中集成友盟统计"></a>在Android工程中集成友盟统计</h2><p>首先需要在友盟官网注册账号并添加新应用，获取Appkey。具体步骤这里不进行叙述。</p>
+<h3 id="1-集成准备"><a href="#1-集成准备" class="headerlink" title="1.集成准备"></a>1.集成准备</h3><h4 id="首先需要集成友盟统计SDK"><a href="#首先需要集成友盟统计SDK" class="headerlink" title="首先需要集成友盟统计SDK"></a>首先需要集成友盟统计SDK</h4><p>有两种方式：</p>
+<p>1.下载SDK，并复制到工程 lib/目录下；</p>
+<p>2.通过添加gradle依赖，在<code>app/builde.gradle</code>中添加</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">dependencies &#123;</div><div class="line">   compile &apos;com.umeng.analytics:analytics:latest.integration&apos;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>因为gradle文件有变化，所以需要更新下工程，就可以使用友盟统计包中的方法了。</p>
+<h4 id="接下来在工程中配置Appkey"><a href="#接下来在工程中配置Appkey" class="headerlink" title="接下来在工程中配置Appkey"></a>接下来在工程中配置Appkey</h4><p>在AndroidManifest.xml中添加权限，填写Appkey和渠道id，代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">&lt;manifest……&gt;</div><div class="line">&lt;uses-sdk ……&gt;&lt;/uses-sdk&gt;</div><div class="line">&lt;!--这4个权限都是必须添加的，最好检查下是否同工程已经添加的权限重复，权限具体用途请自行搜索--&gt;</div><div class="line">&lt;uses-permission android:name=&quot;android.permission.ACCESS_NETWORK_STATE&quot;&gt;&lt;/uses-permission&gt;</div><div class="line">&lt;uses-permission android:name=&quot;android.permission.ACCESS_WIFI_STATE&quot; /&gt;</div><div class="line">&lt;uses-permission android:name=&quot;android.permission.INTERNET&quot;&gt;&lt;/uses-permission&gt;</div><div class="line">&lt;uses-permission android:name=&quot;android.permission.READ_PHONE_STATE&quot;&gt;&lt;/uses-permission&gt;</div><div class="line">&lt;application ……&gt;</div><div class="line">……</div><div class="line">&lt;activity ……/&gt;</div><div class="line">&lt;!--替换为在友盟后台申请的应用Appkey--&gt;</div><div class="line">&lt;meta-data android:value=&quot;YOUR_APP_KEY&quot; android:name=&quot;UMENG_APPKEY&quot;&gt;&lt;/meta-data&gt;</div><div class="line">&lt;!--应用的推广渠道名称，Channel ID自定义--&gt;</div><div class="line">&lt;meta-data android:value=&quot;Channel ID&quot; android:name=&quot;UMENG_CHANNEL&quot;/&gt;</div><div class="line">&lt;/application&gt;    </div><div class="line">&lt;/manifest&gt;</div></pre></td></tr></table></figure>
+<p>如果希望在代码中配置Appkey，Channel等信息，就在程序入口处调用下面的方法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">MobclickAgent. startWithConfigure(UMAnalyticsConfig config)</div></pre></td></tr></table></figure>
+<p>需要创建UMAnalyticsConfig实例，该类有多个构造方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">UMAnalyticsConfig(Context context, String appkey, String channelId)</div><div class="line"></div><div class="line">UMAnalyticsConfig(Context context, String appkey, String channelId, EScenarioType eType)</div><div class="line"></div><div class="line">UMAnalyticsConfig(Context context, String appkey, String channelId, EScenarioType eType,Boolean isCrashEnable)</div></pre></td></tr></table></figure>
+<p>构造意义：<br>String appkey:官方申请的Appkey<br>String channel: 渠道号<br>EScenarioType eType: 场景模式，包含统计、游戏、统计盒子、游戏盒子<br>Boolean isCrashEnable: 可选初始化. 是否开启crash模式</p>
+<ul>
+<li>建议在AndroidManifest文件中进行配置</li>
+</ul>
+<h3 id="2-session统计"><a href="#2-session统计" class="headerlink" title="2.session统计"></a>2.session统计</h3><p>在每个Activity的onResume方法中调用 <code>MobclickAgent.onResume(Context)</code>,<br>onPause方法中调用 <code>MobclickAgent.onPause(Context)</code>。</p>
+<ul>
+<li><p>对于继承了BaseActivity的类，不要同时在父和子Activity中重复添加onResume和onPause方法，会造成重复统计。</p>
+</li>
+<li><p>确保在所有的Activity中都调用 MobclickAgent.onResume() 和MobclickAgent.onPause()方法，这两个调用将不会阻塞应用程序的主线程，也不会影响应用程序的性能。</p>
+</li>
+<li><p>当应用在后台运行超过30秒（默认）再回到前端，将被认为是两个独立的session(启动)，例如用户回到home，或进入其他程序，经过一段时间后再返回之前的应用。可通过接口：MobclickAgent.setSessionContinueMillis(long interval) 来自定义这个间隔（参数单位为毫秒）。</p>
+</li>
+<li><p>如果调用Process.kill或者System.exit之类的方法杀死进程，请务必在此之前调用MobclickAgent.onKillProcess(Context context)方法，用来保存统计数据。</p>
+</li>
+</ul>
+<h3 id="3-页面统计"><a href="#3-页面统计" class="headerlink" title="3.页面统计"></a>3.页面统计</h3><p>只包含Activity的应用，使用上面2.session统计 进行设置就已经默认统计了每个Activity的挑战路径了。页面统计不需要再添加其他代码。</p>
+<p>对包含Activity、Fragment和FragmentActivity的应用，需要进行以下设置。</p>
+<p>建议定义统一的BaseActivity、BaseFragment及BaseFragmentActivity，然后工程中的类分别对应继承这些Base类，那么就只需要对Base类进行配置了，当然在Base类里也可以定义其他一些方法。</p>
+<p>调用<code>MobclickAgent.openActivityDurationTrack(false);</code> 禁止默认的页面统计方式，这样就不会自动统计Activity了。会走我们下面的配置。（详细的统计fragment）</p>
+<p>说下base类如何配置</p>
+<p><code>BaseActivity.class</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">public class BaseActivity extends Activity &#123;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    protected void onResume() &#123;</div><div class="line">        super.onResume();</div><div class="line">        MobclickAgent.onPageStart(getLocalClassName());</div><div class="line">        MobclickAgent.onResume(this);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    protected void onPause() &#123;</div><div class="line">        super.onPause();</div><div class="line">        MobclickAgent.onPageEnd(getLocalClassName());</div><div class="line">        MobclickAgent.onPause(this);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><code>BaseFragment.class</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">public abstract class BaseFragment extends Fragment &#123;</div><div class="line">    </div><div class="line">    @Override</div><div class="line">    public void onResume() &#123;</div><div class="line">        super.onResume();</div><div class="line">        MobclickAgent.onPageStart(getClass().getName());</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public void onPause() &#123;</div><div class="line">        super.onPause();</div><div class="line">        MobclickAgent.onPageEnd(getActivity().getLocalClassName());</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><code>BaseFragmentActivity</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">public class BaseFragmentActivity extends FragmentActivity &#123;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    protected void onResume() &#123;</div><div class="line">        super.onResume();</div><div class="line">        MobclickAgent.onResume(this);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    protected void onPause() &#123;</div><div class="line">        super.onPause();</div><div class="line">        MobclickAgent.onPause(this);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>新创建的Activity需要继承BaseActivity</li>
+</ul>
+<h3 id="4-发送策略"><a href="#4-发送策略" class="headerlink" title="4.发送策略"></a>4.发送策略</h3><p>发送策略有两种方式：1.启动时发送；2.按间隔发送。默认使用启动时发送的策略</p>
+<p>在友盟后台进行设置，位置：<strong>统计分析-&gt;设置-&gt;发送策略 </strong></p>
+<h3 id="5-日志加密、代码混淆"><a href="#5-日志加密、代码混淆" class="headerlink" title="5.日志加密、代码混淆"></a>5.日志加密、代码混淆</h3><h4 id="在程序入口设置加密模式"><a href="#在程序入口设置加密模式" class="headerlink" title="在程序入口设置加密模式"></a>在程序入口设置加密模式</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">/** 设置是否对日志信息进行加密, 默认false(不加密). */</div><div class="line">AnalyticsConfig.enableEncrypt(boolean enable);//6.0.0版本以前</div><div class="line">MobclickAgent.enableEncrypt(boolean enable);//6.0.0版本及以后</div></pre></td></tr></table></figure>
+<h4 id="代码混淆"><a href="#代码混淆" class="headerlink" title="代码混淆"></a>代码混淆</h4><p>如果应用使用了混淆，需要在混淆文件添加</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">-keepclassmembers class * &#123;</div><div class="line">   public &lt;init&gt; (org.json.JSONObject);</div><div class="line">&#125;</div><div class="line">-keep public class [实际的应用包名].R$*&#123;</div><div class="line">public static final int *;</div><div class="line">&#125;</div><div class="line">-keepclassmembers enum * &#123;</div><div class="line">    public static **[] values();</div><div class="line">    public static ** valueOf(java.lang.String);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="6-自定义事件统计"><a href="#6-自定义事件统计" class="headerlink" title="6.自定义事件统计"></a>6.自定义事件统计</h3><p>自定义事件也就是常说的埋点事件，当如果点击了某个按钮时将用户的这一动作记录下来，并传回给服务器，方便统计。</p>
+<p>这里只说下计数事件</p>
+<p>在希望跟踪的位置，调用如下方法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">MobclickAgent.onEvent(Context context, String eventId); // eventId 事件ID，自己定义</div></pre></td></tr></table></figure>
+<p>代码添加之后，在友盟后台需要添加事件，位置   <strong>统计分析-&gt;设置-&gt;事件</strong>,将定义的事件ID添加就可以了。</p>
+<p>附：<a href="http://dev.umeng.com/analytics/android-doc/integration?spm=0.0.0.0.rJoXED" target="_blank" rel="external">友盟官方文档地址</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/08/16/使用wechat AndResGuard进行安装包压缩记录/" rel="next" title="WeChat AndResGuard使用记录">
+                <i class="fa fa-chevron-left"></i> WeChat AndResGuard使用记录
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/12/11/在Android工程中集成友盟统计/"
+           data-title="在Android工程中集成友盟统计记录" data-url="http://haoyh.github.io/2016/12/11/在Android工程中集成友盟统计/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="Haoyh" />
+          <p class="site-author-name" itemprop="name">Haoyh</p>
+          <p class="site-description motion-element" itemprop="description">学习、总结</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">5</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#在Android工程中集成友盟统计"><span class="nav-number">1.</span> <span class="nav-text">在Android工程中集成友盟统计</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-集成准备"><span class="nav-number">1.1.</span> <span class="nav-text">1.集成准备</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#首先需要集成友盟统计SDK"><span class="nav-number">1.1.1.</span> <span class="nav-text">首先需要集成友盟统计SDK</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#接下来在工程中配置Appkey"><span class="nav-number">1.1.2.</span> <span class="nav-text">接下来在工程中配置Appkey</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-session统计"><span class="nav-number">1.2.</span> <span class="nav-text">2.session统计</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-页面统计"><span class="nav-number">1.3.</span> <span class="nav-text">3.页面统计</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-发送策略"><span class="nav-number">1.4.</span> <span class="nav-text">4.发送策略</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-日志加密、代码混淆"><span class="nav-number">1.5.</span> <span class="nav-text">5.日志加密、代码混淆</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#在程序入口设置加密模式"><span class="nav-number">1.5.1.</span> <span class="nav-text">在程序入口设置加密模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#代码混淆"><span class="nav-number">1.5.2.</span> <span class="nav-text">代码混淆</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-自定义事件统计"><span class="nav-number">1.6.</span> <span class="nav-text">6.自定义事件统计</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Haoyh</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"haoyh"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>
